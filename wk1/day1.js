@@ -5,9 +5,10 @@
         Given an array and a new item, add the item to the end of the array
         return the new length of the array
 */
-
 function push(arr, newItem){
     //Code Here
+    arr[arr.length] = newItem;
+    return arr.length;
 }
 
 
@@ -20,5 +21,5 @@ function push(arr, newItem){
 */
 
 function nthToLast(arr, int){
-    //Code Here
+    return arr[arr.length - 1 - int]
 }
