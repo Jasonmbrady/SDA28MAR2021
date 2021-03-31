@@ -17,7 +17,7 @@ Exam code CODE GOES HERE
 - Download exam assets and take screenshot or copy instruction text (in the event of an internet disconnection)
 - Open book / open notes / can use google
 - NO HELPING EACH OTHER. It's easy to spot shared code. DO NOT share exam info with those who haven't taken it.
-- If you have a problem uploading your project zip, email it to cbautista@codingdojo.com, mhong@codingdojo.com
+- If you have a problem uploading your project zip, email it to jbrady@codingdojo.com
 
 ## PLAGIARISM
 
