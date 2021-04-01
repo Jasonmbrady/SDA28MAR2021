@@ -1,6 +1,6 @@
 # Exam Info
 
-Exam code CODE GOES HERE
+Exam code 280cd81A
 
 
 ## Scoring
