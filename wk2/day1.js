@@ -17,7 +17,13 @@
 // const arr2Expected = ["b", "c", "d"]
 
 function shift(arr) {
-    // code here
+    var tempArr = [] // empty array to temporaroly contain values from arr
+    for(var i=1; i<arr.length; i++){
+        tempArr.push(arr[i]); // add all but the first element of arr (arr[0]) to tempArr
+    }
+    tempArr[tempArr.length] = arr[0]; // add arr[0] on the end of tempArr
+    arr = tempArr; // set arr to the new, reordered array
+    return arr.pop(); // pop off the last value of arr (which was previously arr[0])
   }
   
   /* ******************************************************************************** */
@@ -41,6 +47,11 @@ function shift(arr) {
   // const arr2Expected = ["a"]
   
   function unshift(arr, newItem) {
-    // code here
+    var tempArr = [newItem]; // create a new temporary array to hold values. Add newItem as first value
+    for(i=0; i < arr.length; i+){
+        tempArr.push(arr[i]); // push values of arr into tempArr in order, placing them after newItem
+    }
+    arr = tempArr; // set arr equal to the newly created array
+    return arr.length; // return the length of the newly modified array
   }
  
