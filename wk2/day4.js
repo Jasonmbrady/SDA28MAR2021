@@ -18,16 +18,19 @@
 function removeAt(arr, idx) {
     // code here
 }
+
 /* ****************************************** */
 
 /*
-  Given an array, move the minimum value to the front
+  Given an array of integers, move the minimum value to the front
   return the array after done
   No built in methods
 */
 
 // const nums1 = [1, 5, 2, 9];
 // const expected1 = [1, 5, 2, 9];
+// const nums2 = [3, 5, 10, 2, 6];
+// expected return = [2, 3, 5, 10, 6]
 
 function minToFront(nums) {
     // code here
