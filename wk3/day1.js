@@ -4,14 +4,14 @@
   return a new string that is the given string reversed
 */
 
-// const str1 = "creature"
-// const expected1 = "erutaerc"
+// const str1 = "Creature"
+// const expected1 = "erutaerC"
 
 // const str2 = "maple"
 // const expected2 = "elpam"
 
-function reverseStr(){
-    //your code here
+function reverseStr(str){
+    // your code here
 }
 /* ************************************************* */
 
@@ -23,17 +23,22 @@ function reverseStr(){
 */
 
 // const str1 = " there's no free lunch - gotta pay yer way. ";
-// const expected1 = "TNFL-GPYW";
+// const expected1 = "TNFLGPYW";
 
 // const str2 = "Live from New York, it's Saturday Night!";
 // const expected2 = "LFNYISN";
 
-function acronym(){
+function acronym(str){
     // your code here
 }
 
 /* ************************************************* */
 /* case insensitive string compare */
-function compareNoCase(){
+
+// str1 = "Dad";
+// str2 = "dad";
+// str3 = "WeiRd MIxEd cASe";
+// str4 = "weird mixed case";
+function compareNoCase(str1, str2){
     // your code here
 }
