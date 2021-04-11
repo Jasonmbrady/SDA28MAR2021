@@ -31,3 +31,9 @@ function reverseStr(){
 function acronym(){
     // your code here
 }
+
+/* ************************************************* */
+/* case insensitive string compare */
+function compareNoCase(){
+    // your code here
+}
