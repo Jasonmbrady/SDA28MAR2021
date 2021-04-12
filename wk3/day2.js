@@ -20,9 +20,9 @@
 // const separator4 = ", "
 // const expected4 = "1"
 
-// const arr5 = []
-// const separator5 = ", "
-// const expected5 = ""
+// const arr5 = [1,2,3]
+// const separator5 = " and then...  "
+// const expected5 = "1 and then... 2 and then... 3"
 
 function join(arr, separator){
     //code here
