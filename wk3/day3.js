@@ -22,14 +22,15 @@
 function encodeStr(str) {
     // Your Code Here
 }
+
 /* ************************************************ */
 
 /*
   String Decode
 */
 
-const str1 = "a3b2c1d3";
-const expected1 = "aaabbcddd";
+//const str1 = "a13b2c1d3";
+//const expected1 = "aaaaaaaaaaaaabbcddd";
 
 function decodeStr(str) {
     // Your Code Here
