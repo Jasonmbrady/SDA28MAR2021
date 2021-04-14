@@ -18,7 +18,16 @@
 // const expected4 = false
 
 function isPalindrome(str) {
-    // YOUR CODE HERE
+      for (let i = 0; i < Math.floor(str.length / 2); i++) {
+    // Looping inwards from both sides.
+    let leftChar = str[i];
+    let rightChar = str[str.length - 1 - i];
+
+    if (leftChar !== rightChar) {
+      return false; // early exit
+    }
+  }
+  return true;
 }
 
 /*****************************************************************************/
@@ -43,5 +52,26 @@ a, ab, abc, b, bc, c
 // HINT: Use isPalindrome function above as a helper function!
 
 function longestPalindrome(str) {
-    // YOUR CODE HERE
+  // early exit check
+    if (str.length <= 1) return str;
+  // longestPal
+  var longestPal = str[0];
+  // loop to read the entire string
+  for (let i = 0; i < str.length; i++) {
+    // loop
+    for (let j = i + 1; j < str.length; j++) {
+      // create another string
+      // slice
+      var sub = str.slice(i,j);
+
+      // take a portion of the string
+      // check if isPalinDrome
+      if (isPalindrome(sub)) {
+        // if the portion.length is longer then longestPal.length
+        if (sub.length > longestPal.length) {
+          longestPal = sub;
+        }
+      }
+    }
+  }
 }
