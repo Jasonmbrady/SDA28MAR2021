@@ -16,6 +16,11 @@
 
 function zipArraysIntoMap(keyArr, valueArr) {
     //Your Code here
+    let obj = {};
+    for(let i = 0; i < keyArr.length; i++){
+        obj[keyArr[i]] = valueArr[i];
+    }
+    return obj;
 }
 
 /*****************************************************************************/
@@ -31,5 +36,9 @@ function zipArraysIntoMap(keyArr, valueArr) {
 // const expected1 = { Zaphod: "name", high: "charm", dicey: "morals" };
 
 function invertObj(obj) {
-    // Your Code Here
+    let newObj = {};
+    for (const [key, value] of Object.entries(obj)){
+        newObj[value] = key;
+    }
+    return newObj;
 }
