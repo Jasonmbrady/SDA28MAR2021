@@ -4,7 +4,10 @@
   Useful methods:
     Object.hasOwnProperty("keyName")
       - returns true or false if the object has the key or not
+      - solution.hasOwnProperty("a") -> returns boolean
     Python: key in dict
+      - "a" in solution:
+
 */
 
 // const arr1 = ["a", "a", "a"]
