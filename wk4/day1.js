@@ -15,7 +15,7 @@
 //   a: 3,
 // }
 
-// const arr2 = ["a", "b", "a", "c", "B", "c", "c", "d"]
+const arr2 = ["a", "b", "a", "c", "B", "c", "c", "d"]
 // const expected2 = {
 //   a: 2,
 //   b: 1,
@@ -28,10 +28,18 @@
 // const expected3 = {}
 
 function frequencyTableBuilder(arr) {
-    //Your Code Here
+    let freq = {};
+    for(let i =0; i < arr.length; i++){
+        if(freq.hasOwnProperty(arr[i])){
+            freq[arr[i]] += 1;
+        } else {
+            freq[arr[i]] = 1;
+        }
+    }
+    return freq;
   }
   
-  // frequencyTableBuilder(arr2)
+console.log(frequencyTableBuilder(arr2))
   
   /*****************************************************************************/
   
@@ -45,8 +53,20 @@ function frequencyTableBuilder(arr) {
   // const expected1 = "test a is This";
   
   function reverseString(str) {
-    // Your Code Here
+    let output = "";
+    let word = ""
+    for(let i = 0; i< str.length; i++){
+        if(str[i] !== " "){
+            word += str[i];
+        } else {
+            output = word + " " + output;
+            word = "";
+        }
+    }
+    output = word + " " + output;
+    output.trim();
+    return output;
   }
   
-//console.log(reverseString("This is a test"))
+console.log(reverseString("This is a test"))
   
