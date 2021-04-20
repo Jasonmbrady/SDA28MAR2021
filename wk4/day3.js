@@ -19,8 +19,29 @@
 // const expected4 = false
 // // Explanation: same number of opens and closes but the 2nd closing closes nothing
 
-function parensValid(str) {}
+function parensValid(str) {
+  let freq = {parens: 0};
+  for(let i = 0; i < str.length; i++){
+    if(str[i] === "("){
+      freq.parens++;
+    } else if(str[i] ===")"){
+      freq.parens--;
+      if(freq.parens < 0){
+        return false;
+      }
+    }
+  }
+  if (freq.parens !== 0){
+    return false;
+  } else {
+    return true;
+  }
+}
 
+// console.log(parensValid(str1));
+// console.log(parensValid(str2));
+// console.log(parensValid(str3));
+// console.log(parensValid(str4));
 /*****************************************************************************/
 
 /*
@@ -34,7 +55,9 @@ function parensValid(str) {}
 // const str2 = "D(i{a}l[ t]o)n{e";
 // const expected2 = false;
 
-// const str3 = "A(1)s[O (n]0{t) 0}k";
+//  const str3 = "A(1)s[O (n]0{t) 0}k";
 // const expected3 = false;
 
-function bracesValid(str) {}
+function bracesValid(str) {
+  // To Do This Afternoon
+}
