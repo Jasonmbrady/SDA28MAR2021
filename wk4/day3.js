@@ -49,15 +49,71 @@ function parensValid(str) {
   Given a string sequence of parentheses, braces and brackets, determine whether it is valid.
 */
 
-// const str1 = "W(a{t}s[o(n{ c}o)m]e )h[e{r}e]!";
+const str1 = "W(a{t}s[o(n{ c}o)m]e )h[e{r}e]!";
 // const expected1 = true;
 
-// const str2 = "D(i{a}l[ t]o)n{e";
+const str2 = "D(i{a}l[ t]o)n{e";
 // const expected2 = false;
 
-//  const str3 = "A(1)s[O (n]0{t) 0}k";
+ const str3 = "A(1)s[O (n]0{t) 0}k";
 // const expected3 = false;
 
 function bracesValid(str) {
-  // To Do This Afternoon
+  let stack = [];
+  for (let i=0; i< str.length; i++){
+    switch (str[i]) {
+      // Open cases
+      case "(":
+        stack.push("paren");
+        break;
+
+      case "[":
+        stack.push("bracket");
+        break;
+
+      case "{":
+        stack.push("brace");
+        break;
+      // Close cases
+      case ")":
+        if (stack[stack.length-1] !== "paren"){
+          return false;
+        } else {
+          stack.pop();
+        }
+        break;
+      case "]":
+        if (stack[stack.length-1] !== "bracket"){
+          return false;
+        } else {
+          stack.pop();
+        }
+        break;
+      case "}":
+        if (stack[stack.length-1] !== "brace"){
+          return false;
+        } else {
+          stack.pop();
+        }
+        break;
+
+      default:
+        break;
+    }
+  }
+  if (stack.length > 0){
+    return false;
+  } else {
+    return true;
+  }
+  // iterate through string. When a bracket/brace/etc opening is found, track it
+  // when a closing bracket/brace/etc is found, verify that it matches the currently open set
+  // if not, return false
+  // if so, continue to iterate
+  // if I reach the end of the string and all open brackets/braces/etc. are closed, return true.
+  // else return false
 }
+
+console.log(bracesValid(str1))
+console.log(bracesValid(str2))
+console.log(bracesValid(str3))
