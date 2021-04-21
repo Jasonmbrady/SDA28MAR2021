@@ -20,7 +20,19 @@
 // const expected4 = "orldHello W"
 
 function rotateStr(str, n) {
-    // YOUR CODE HERE
+
+    let res = "";
+    let rotatedSubStr = "";
+    let rotate = n % str.length;
+    for (let i = 0; i < str.length; i++) {
+      if (i >= str.length - rotate) {
+        rotatedSubStr += str[i];
+      } else {
+        res += str[i];
+      }
+    }
+    return rotatedSubStr + res;
+  
   }
   
   
@@ -43,4 +55,8 @@ function rotateStr(str, n) {
   
   function isRotation(s1, s2) {
     // Your Code Here
+    if (s1.length !== s2.length || s1 === s2){
+      return false;
+    }
+    return (s1 + s1).includes(s2);
   }
