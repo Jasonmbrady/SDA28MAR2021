@@ -1,3 +1,29 @@
+// On^2 -> Speed, Space
+// On log n
+// On 
+// O1
+
+// On log n
+function balanceIndex(nums) {
+    if (nums.length <= 2) {
+        return -1;
+    }
+
+    let leftSum = 0;
+    let rightSum = 0;
+
+    for (let i = 1; i < nums.length; i++) {
+        leftSum += nums[i - 1];
+        for (let j = i + 1; j < nums.length; j++) {
+            rightSum += nums[j];
+        }
+        if (leftSum == rightSum) {
+            return i;
+        }
+        rightSum = 0;
+    }
+    return -1
+}
 /*
   Balance Index
   Here, a balance point is ON an index, not between indices.
@@ -13,7 +39,28 @@
 // const nums2 = [9, 9];
 // const expected2 = -1;
 
+// On
 function balanceIndex(nums) {
+    if (nums.length < 3) {
+        return -1
+      }
+    
+      let left = nums[0]
+      let right = 0
+    
+      for (let i = 2; i < nums.length; i++) {
+        right += nums[i]
+      }
+    
+      for (let i = 1; i < nums.length - 1; i++) {
+        if (left === right) {
+          return i
+        }
+    
+        right -= nums[i + 1]
+        left += nums[i]
+      }
+      return -1
 
 }
 console.log(balanceIndex(nums1))
@@ -35,5 +82,24 @@ console.log(balanceIndex(nums1))
 // const expected2 = false;
 
 function balancePoint(nums) {
-  // Your code here
+    if (length < 2) {
+        return false
+      }
+    
+      let left = nums[0]
+      let right = 0
+    
+      for (let i = 1; i < length; i++) {
+        right += nums[i]
+      }
+    
+      for (let i = 1; i < length; i++) {
+        if (left === right) {
+          return true
+        }
+    
+        right -= nums[i]
+        left += nums[i]
+      }
+      return false
 }
