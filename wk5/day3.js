@@ -18,7 +18,19 @@
 // const nums3 = [1, 1, 2, 3, 3, 4]
 // const expected3 = [1, 2, 3, 4]
 
-function deDupe(nums) {}
+function deDupe(nums) {
+    let freq = {};
+    for (let i=0; i < nums.length; i++){
+        if (!freq.hasOwnProperty(nums[i])){
+            freq[nums[i]] = true;
+        }
+    }
+    nums = [];
+    for (const num in freq){
+        nums.push(num);
+    }
+    return nums;
+}
 
 /*****************************************************************************/
 
@@ -41,11 +53,40 @@ function deDupe(nums) {}
 // const nums3 = [5, 1, 4];
 // const expected3 = [];
 
-// const nums4 = [5, 1, 4, 1];
+ const nums4 = [5, 1, 4, 1];
 // const expected4 = [1];
 
-// const nums5 = [5, 1, 4, 1, 5];
+ const nums5 = [5, 1, 4, 1, 5];
 // const expected5 = [5, 1];
 //  - order doesn't matter
 
-function mode(nums) {}
+function mode(nums) {
+    let freq = {};
+    let maxReps = 0;
+    let solution = [];
+    for (let i=0; i<nums.length; i++){
+        if (freq.hasOwnProperty(nums[i])){
+            freq[nums[i]]++;
+            if (freq[nums[i]] > maxReps){
+                maxReps = freq[nums[i]];
+            }
+        } else {
+            freq[nums[i]] = 1;
+            if (freq[nums[i]] > maxReps){
+                maxReps = freq[nums[i]];
+            }
+        }
+    }
+    for (const num in freq){
+        if (freq[num] === maxReps){
+            solution.push(num)
+        }
+    }
+    if (Object.keys(freq).length === solution.length){
+        return [];
+    } else {
+        return solution;
+    }
+}
+console.log(mode(nums4));
+console.log(mode(nums5));
