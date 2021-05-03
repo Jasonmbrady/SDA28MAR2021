@@ -22,7 +22,16 @@
 
 function factorial(n) {
     // Your Code Here
+    num = Math.floor(n);
+    if(num == 0){
+        return 1;
+    }
+    return num * factorial(num-1);
 }
+
+console.log(factorial(3));
+console.log(factorial(6.8));
+console.log(factorial(0));
 
 /*****************************************************************************/
 
@@ -52,6 +61,12 @@ function factorial(n) {
 // const expected6 = 21;
 
 function fibonacci(n) {
-  // Your Code Here
+  if(n == 0){
+      return 0;
+  }
+  if (n == 1){
+      return 1;
+  }
+  return fibonacci(n-1) + fibonacci(n-2);
 }
-console.log(fibonacci(1000))
+console.log(fibonacci(10));
