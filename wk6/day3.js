@@ -21,8 +21,26 @@
 // const expected3 = true
 
 function binarySearch(sortedNums, searchNum) {
-    // Your Code Here
+    mid = Math.floor(sortedNums.length/2); // it's okay to use a variable since we want it to get re-initialized with every call
+
+    // base case(s)
+    if(sortedNums[mid] == searchNum){
+        return true;
+    } else if (mid == 0){
+        return false;
+    } 
+    // recursive calls
+    else if (sortedNums[mid] > searchNum){
+        return binarySearch(sortedNums.slice(0, mid), searchNum);
+    } else if (sortedNums[mid] < searchNum){
+        return binarySearch(sortedNums.slice(mid+1), searchNum);
+    }
+
 }
+console.log(binarySearch([1,1,2,3,4,5,5,6,7], 6));
+console.log(binarySearch([1,1,2,3,4,5,5,6,7], 8));
+console.log(binarySearch([1,1,2,3,4,5,5,6,7], 1));
+
 
 
 /*****************************************************************************/
@@ -41,5 +59,12 @@ function binarySearch(sortedNums, searchNum) {
 // const expected2 = "";
 
 function reverseStr(str) {
-    // Your Code Here
+    // base case
+    if (str == ""){
+        return "";
+    } else {
+    // recursive call
+        return reverseStr(str.slice(1)) + str[0];
+    }
 }
+console.log(reverseStr("Hello World"));
