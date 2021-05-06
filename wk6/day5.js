@@ -23,6 +23,46 @@
 
 function floodFill(canvas2D, startXY, newColor, originalColor = null) {
     // Your Code Here
+    // takes is startXY as pixel clicked. Save originalColor. Change pixel to newColor. Check all UDLR pixels. Those whose color matches originalColor, run floodFill on them.
+    const x = startXY[0];
+    const y = startXY[1];
+    // Set originalColor if null
+    if (!originalColor){
+        originalColor = canvas2D[y][x]
+    }
+    // Change color of pixel to newColor
+    //if canvas2d[y][x] === originalColor
+    // 
+    canvas2D[y][x] = newColor;
+    //
+    // changed = true
+
+    // Check each direction for originalColor
+    if (y+1 <= canvas2D.length - 1){
+        if(canvas2D[y+1][x] == originalColor){
+
+            floodFill(canvas2D, [x, y+1], newColor, originalColor);
+        }
+    }
+    if (x+1 <= canvas2D[0].length - 1){
+        if(canvas2D[y][x+1] == originalColor){
+
+            floodFill(canvas2D, [x+1, y], newColor, originalColor)
+        }
+    }
+    if (y-1 >= 0){
+        if(canvas2D[y-1][x] == originalColor){
+
+            floodFill(canvas2D, [x, y-1], newColor, originalColor)
+        }
+    }
+    if (x-1 >= 0){
+        if(canvas2D[y][x-1] == originalColor){
+
+            floodFill(canvas2D, [x-1, y], newColor, originalColor)
+        }
+    }
+    return canvas2D
 }
 
     const canvas = [
