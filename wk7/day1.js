@@ -5,6 +5,7 @@
     - Average: O(n^2) quadratic.
     - Worst: O(n^2) quadratic when the array is reverse sorted.
   Space: O(1) constant.
+
   For review, create a function that uses BubbleSort to sort an unsorted array in-place.
   For every pair of adjacent indices, swap them if the item on the left is larger than the item on the right until array is fully sorted
 */
@@ -51,30 +52,4 @@ function bubbleSort(nums) {
   console.log(selectionSort(numsRandomOrder1))
   console.log(selectionSort(numsReversed))
   
-  
-  // function selectionSort(nums) {
-    //   const len = nums.length
-    //   let selectedIdx = 0
-    //   let idxOfCurrMin = 0
-  
-    //   while (selectedIdx < len) {
-      //     for (let i = selectedIdx; i < len; i++) {
-        //       if (nums[i] < nums[idxOfCurrMin]) {
-          //         idxOfCurrMin = i
-          //       }
-          //     }
-  
-          //     if (nums[selectedIdx] !== nums[idxOfCurrMin]) {
-            //       const temp = nums[selectedIdx]
-            //       nums[selectedIdx] = nums[idxOfCurrMin]
-            //       nums[idxOfCurrMin] = temp
-            //     }
-            //     selectedIdx += 1
-            //     // reset idxOfCurrMin to the next selected index we are going to work with to find the next min
-            //     idxOfCurrMin = selectedIdx
-            //   }
-            //   return nums
-            // }
-  
-  /*****************************************************************************/
   
