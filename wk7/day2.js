@@ -33,5 +33,17 @@ const numsReversed = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 function insertionSort(nums) {
-    // YOUR CODE HERE
+    for (let i=1; i < nums.length; i++){
+        let insert = nums[i];
+        let leftIdx = i-1;
+        while(leftIdx >=0 && nums[leftIdx] > insert){
+            nums[leftIdx + 1] = nums[leftIdx];
+            leftIdx--;
+        }
+        nums[leftIdx + 1] = insert;
+    }
+    return nums;
 }
+console.log(insertionSort(numsOrdered))
+console.log(insertionSort(numsRandomOrder))
+console.log(insertionSort(numsReversed))
