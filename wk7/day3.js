@@ -35,8 +35,31 @@ const sortedB4 = [3, 7, 8, 10]
 const expectedMerge4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 function merge(left, right) {
-    // YOUR CODE HERE
+    let result = [];
+    let iRight = 0;
+    let iLeft = 0;
+    while ( iLeft < left.length && iRight < right.length){
+        if (left[iLeft] < right[iRight]){
+            result.push(left[iLeft]);
+            iLeft++;
+        } else {
+            result.push(right[iRight])
+            iRight++;
+        }
+    }
+    if (iLeft == left.length){
+        for (let i=iRight; i < right.length; i++){
+            result.push(right[i])
+        }
+    } else {
+        for (let i=iLeft; i < left.length; i++){
+            result.push(left[i])
+        }
+    }
+    return result;
 }
+//console.log(merge(sortedA2, sortedB2))
+//console.log(merge(sortedA3, sortedB3))
 
 /*****************************************************************************/
 
@@ -51,5 +74,17 @@ const expectedSort = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 function mergeSort(nums) {
     // YOUR CODE HERE
+    if (nums.length === 1){
+        return nums;
+    }
+    const mid = Math.floor(nums.length /2);
+    const left = nums.slice(0, mid);
+    const right = nums.slice(mid);
+
+    return merge(mergeSort(left), mergeSort(right))
 }
+
+console.log(mergeSort(numsOrdered));
+console.log(mergeSort(numsRandomOrder));
+console.log(mergeSort(numsReversed));
 
