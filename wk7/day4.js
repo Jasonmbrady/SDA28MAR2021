@@ -37,18 +37,40 @@ const nums3 = [1, 17, 12, 3, 9, 13, 21, 4, 27];
  * returns {Array<number>} The idx where left section of smaller items ends.
  */
 function partition(nums, left, right){
-    // YOUR CODE HERE
+    const pivotVal = nums[Math.floor((left + right) / 2)];
+    let leftIdx = left;
+    let rightIdx = right;
+    while (true){
+        while(nums[leftIdx] < pivotVal){
+            leftIdx++;
+        }
+        while(nums[rightIdx] > pivotVal){
+            rightIdx--;
+        }
+        if (leftIdx >= rightIdx){
+            return rightIdx;
+        }
+
+        [nums[leftIdx], nums[rightIdx]] = [nums[rightIdx], nums[leftIdx]];
+        leftIdx++;
+        rightIdx--;
+    }
+
 }
 
 // RECURSION AKA Quick Sort
 
 function quickSort(nums, left = 0, right = nums.length-1){
-    //YOUR CODE HERE
+    if(left < right){
+        const idx = partition(nums, left, right);
+        quickSort(nums, left, idx-1);
+        quickSort(nums, idx+1, right)
+    }
 }
 
-// quickSort(nums1);
-// quickSort(nums2);
-// quickSort(nums3);
-// console.log(nums1);
-// console.log(nums2);
-// console.log(nums3);
+quickSort(nums1);
+quickSort(nums2);
+quickSort(nums3);
+console.log(nums1);
+console.log(nums2);
+console.log(nums3);
