@@ -27,6 +27,50 @@ const expected3 = [4, 5]
     but have duplicates, so only one copy of each is kept.
 */
 
+// METHOD 1: Nested loops -> O(n^2) quadratic run efficiency
 function symmetricDifferences(setA, setB) {
-    // YOUR CODE HERE
+    const solution = [];
+    for (const num of setA){
+        if (!setB.includes(num) && !solution.includes(num)){
+            solution.push(num);
+        }
+    }
+    for (const num of setB){
+        if (!setA.includes(num) && !solution.includes(num)){
+            solution.push(num);
+        }
+    }
+    return solution;
 }
+
+// METHOD 2: Frequency Table/Seen Table/Hash Table -> O(n)linear run efficiency
+function symmetricDifferencesFreq(setA, setB) {
+    const freqA = {};
+    const freqB = {};
+    const solution = [];
+
+    for (const num of setA){
+        freqA[num] = "unicorns";
+    }
+
+    for (const num of setB){
+        freqB[num] = "not unicorns";
+    }
+
+    for (const key in freqA){
+        if (!freqB.hasOwnProperty(key))
+        solution.push(parseInt(key))
+    }
+    for (const key in freqB){
+        if (!freqA.hasOwnProperty(key))
+        solution.push(parseInt(key))
+    }
+    return solution;
+}
+
+console.log(symmetricDifferences(test1SetA, test1SetB));
+console.log(symmetricDifferences(test2SetA, test2SetB));
+console.log(symmetricDifferences(test3SetA, test3SetB));
+console.log(symmetricDifferencesFreq(test1SetA, test1SetB));
+console.log(symmetricDifferencesFreq(test2SetA, test2SetB));
+console.log(symmetricDifferencesFreq(test3SetA, test3SetB));
