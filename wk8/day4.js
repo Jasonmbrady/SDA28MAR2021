@@ -5,7 +5,7 @@
   integers that adds up to the sum passed in as one of the inputs.
 */
 
-// const nums1 = [2, 5, 3, 6, 7, 23, 12]
+ const nums1 = [2, 5, 3, 6, 7, 23, 12]
 // const sum1 = 16
 // const expected1 = [
 //   [2, 5, 3, 6],
@@ -13,7 +13,7 @@
 // ]
 
 // // Bonus:
-// const nums2 = [2, 5, 3, 6, 7, 0, 0, 23, 12]
+ const nums2 = [2, 5, 3, 6, 7, 0, 0, 4, 12]
 // const sum2 = 16
 // const expected2 = [
 //   [2, 5, 3, 6],
@@ -24,8 +24,29 @@
 
 function findConsqSums(nums, targetSum) {
 // YOUR CODE HERE
-}
+    const sums = []; 
+    for (let i=0; i < nums.length; i++){// i is left pointer
+        const currSlice = [];
+        let sum = 0;
+        let right = i;
 
+        while (sum <= targetSum && right < nums.length){
+            if (sum + nums[right] <= targetSum){
+                sum += nums[right];
+                currSlice.push(nums[right]);
+                right++;
+                if (sum === targetSum){
+                    sums.push(currSlice.slice());
+                }
+            } else {
+                break;
+            }
+        }
+    }
+    return sums;
+}
+console.log(findConsqSums(nums2, 16))
+console.log(findConsqSums(nums1, 16))
 /*****************************************************************************/
 
 /*
@@ -44,4 +65,18 @@ function findConsqSums(nums, targetSum) {
 
 function allNonConsecutive(sortedNums) {
 // YOUR CODE HERE
+    const solution = [];
+    for (let i=1; i< sortedNums.length; i++){
+        const currNum = sortedNums[i];
+        const prevNum = sortedNums[i-1];
+
+        if (currNum - 1 !== prevNum){
+            solution.push({
+                idx: i,
+                num: currNum,
+            })
+        }
+    }
+    return solution;
 }
+// console.log(allNonConsecutive(nums1))
