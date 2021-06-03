@@ -17,7 +17,7 @@ const k2 = 1
 const expected2 = [0]
 // Explanation: k being 1 means return the single most frequent element
 
-const nums3 = [1, 1, 2, 2, 3, 3]
+const nums3 = [1, 2, 3]
 const k3 = 3
 const expected3 = [1, 2, 3]
 /*
@@ -28,10 +28,52 @@ const expected3 = [1, 2, 3]
 
 function kMostFrequent(nums, k) {
     // YOUR CODE HERE
+    const freq = {};
+    const invFreq = {};
+    const solution = [];
+    let max = 0;
+
+    for (const num of nums){ // build frequency table
+      if (freq.hasOwnProperty(num)){
+        freq[num]++;
+        if (freq[num] > max){
+          max = freq[num]
+        }
+      } else {
+        freq[num] = 1;
+        if (max === 0){
+          max = 1;
+        }
+      }
+    }
+    // build a 'reverse' frequency table where the key is the frequency 
+    // and the value is an array of all numbers that have that frequency.
+    for (const numKey in freq){ 
+      const frequency = freq[numKey]
+      if (invFreq.hasOwnProperty(frequency)){
+        invFreq[frequency].push(parseInt(numKey))
+      } else {
+        invFreq[frequency] = [parseInt(numKey)]
+      }
+    }
+
+    let nextFrequency = max;
+
+    while (solution.length < k && nextFrequency > 0){
+      if (invFreq.hasOwnProperty(nextFrequency) && invFreq[nextFrequency].length > 0){
+        solution.push(invFreq[nextFrequency].pop())
+      } else {
+        nextFrequency--;
+      }
+    }
+    return solution;
 }
+console.log(kMostFrequent(nums1, k1));
+console.log(kMostFrequent(nums2, k2));
+console.log(kMostFrequent(nums3, k3));
 
 /*****************************************************************************/
-
+console.log("*****************************************************")
 // Asked in "Python interview with a LinkedIn engineer: Matching pairs"
 
 /*
@@ -40,12 +82,27 @@ function kMostFrequent(nums, k) {
   Bonus: Make it O(n) time
 */
 
-const nums1 = [2, 11, 7, 15];
-const targetSum1 = 9;
+const nums11 = [2, 11, 7, 15];
+const targetSum11 = 9;
 
 // Order doesn't matter. Explanation: nums[0] + nums[2] = 2 + 7 = 9
-const expected1 = [0, 2];
+const expected11 = [0, 2];
 
 function twoSum(nums, targetSum) {
     // YOUR CODE HERE
+    const freq = {};
+
+    for (let i=0; i < nums.length; i++){
+      const num = nums[i]
+      if (num > targetSum){
+        continue;
+      }
+      diff = targetSum - num;
+      if (freq.hasOwnProperty(diff)){
+        return [freq[diff], i]
+      }
+      freq[num] = i;
+    }
+    return [];
 }
+console.log(twoSum(nums11, targetSum11));
