@@ -7,34 +7,50 @@
   programming.
 */
 
-// const items = [
-//   { firstName: "Bob", lastName: "Bobbert", age: 31 },
-//   { firstName: "John", lastName: "Smith", age: 25 },
-//   { firstName: "Bob", lastName: "Smith", age: 27 },
-//   { firstName: "Bob", lastName: "White", age: 31 },
-// ]
+const items = [
+  { firstName: "Bob", lastName: "Bobbert", age: 31 },
+  { firstName: "John", lastName: "Smith", age: 25 },
+  { firstName: "Bob", lastName: "Smith", age: 27 },
+  { firstName: "Bob", lastName: "White", age: 31 },
+]
 
-// const searchCriteria1 = {
-//   firstName: "Bob",
-//   age: 31,
-// }
+const searchCriteria1 = {
+  firstName: "Bob", 
+  age: 31,
+}
 // const expected1 = [
 //   { firstName: "Bob", lastName: "Bobbert", age: 31 },
 //   { firstName: "Bob", lastName: "White", age: 31 },
 // ]
 
-// const searchCriteria2 = {
-//   lastName: "Smith",
-// }
+const searchCriteria2 = {
+  lastName: "Smith",
+}
 // const expected2 = [
 //   { firstName: "John", lastName: "Smith", age: 25 },
 //   { firstName: "Bob", lastName: "Smith", age: 27 },
 // ]
 
 function findObjects(criteria, collection) {
-    // YOUR CODE HERE
+    const solution = [];
+     for (const item of collection){
+         let match = true;
+         for(const searchKey in criteria){
+             const searchVal = criteria[searchKey];
+             if (item.hasOwnProperty(searchKey) === false || item[searchKey] !== searchVal){
+                 match = false;
+                 break;
+             }
+         }
+         if (match){
+             solution.push(item);
+         }
+     }
+     return solution;
 }
 // Returning [ {} ]
+console.log(findObjects(searchCriteria1, items))
+console.log(findObjects(searchCriteria2, items))
 /*****************************************************************************/
 
 /*
@@ -70,13 +86,13 @@ const students = [
 
 const id1 = 3;
 const updateData1 = { redBeltStatus: true, isLateToday: true };
-const expected1 = {
-  id: 3,
-  name: "student3",
-  isLateToday: true,
-  lateCount: 0,
-  redBeltStatus: true,
-};
+// const expected1 = {
+//   id: 3,
+//   name: "student3",
+//   isLateToday: true,
+//   lateCount: 0,
+//   redBeltStatus: true,
+// };
 
 const id2 = 1;
 const updateData2 = {
@@ -84,13 +100,13 @@ const updateData2 = {
   lateCount: 16,
   randomKey: "randomValue",
 };
-const expected2 = {
-  id: 1,
-  name: "student1",
-  isLateToday: true,
-  lateCount: 16,
-  redBeltStatus: false,
-};
+// const expected2 = {
+//   id: 1,
+//   name: "student1",
+//   isLateToday: true,
+//   lateCount: 16,
+//   redBeltStatus: false,
+// };
 /*
   Explanation: In this implementation
     randomKey was not added because it is not an existing key that can be updated
@@ -98,9 +114,24 @@ const expected2 = {
 
 const id3 = 5;
 const updateData3 = {};
-const expected3 = null;
+// const expected3 = null;
 
 function findByIdAndUpdate(id, updatedVals, collection) {
  // YOUR CODE HERE
+    tempArr = collection.filter( item => item.id === id);
+    if (tempArr.length !== 1){
+        return null;
+    }
+    updated = tempArr[0];
+    for (const key in updatedVals){
+        const val = updatedVals[key];
+        if (updated.hasOwnProperty(key)){
+            updated[key] = val;
+        }
+    }
+    return updated;
 }
 // Returning {} or null
+console.log(findByIdAndUpdate(id1, updateData1, students));
+console.log(findByIdAndUpdate(id2, updateData2, students));
+console.log(findByIdAndUpdate(id3, updateData3, students));
