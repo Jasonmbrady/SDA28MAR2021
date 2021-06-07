@@ -34,7 +34,7 @@
 function findObjects(criteria, collection) {
     // YOUR CODE HERE
 }
-
+// Returning [ {} ]
 /*****************************************************************************/
 
 /*
@@ -103,3 +103,4 @@ const expected3 = null;
 function findByIdAndUpdate(id, updatedVals, collection) {
  // YOUR CODE HERE
 }
+// Returning {} or null
