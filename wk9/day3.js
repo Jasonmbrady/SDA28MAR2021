@@ -8,31 +8,39 @@
     - you can assume the searchMethod will be valid
 */
 
-// const people = [
-//   {
-//     firstName: "John",
-//     lastName: "Doe",
-//   },
-//   {
-//     firstName: "Jane",
-//     lastName: "Doe",
-//   },
-//   {
-//     firstName: "Eddy",
-//     lastName: "Lee",
-//   },
-//   {
-//     firstName: "John",
-//     lastName: "Fawn",
-//   },
-//   {
-//     firstName: "Edward",
-//     lastName: "Kim",
-//   },
-// ]
+const people = [
+  {
+    firstName: "John",
+    lastName: "Doe",
+  },
+  {
+    firstName: "Jane",
+    lastName: "Doe",
+  },
+  {
+    firstName: "Eddy",
+    lastName: "Lee",
+  },
+  {
+    firstName: "John",
+    lastName: "Fawn",
+  },
+  {
+    firstName: "Edward",
+    lastName: "Kim",
+  },
+  {
+      firstName: "Joe",
+      lastName: "Doesnthavealastname"
+  },
+  {
+      firstName: "ohno",
+      lastName: "Doesnthavealastname"
+  }
+]
 
-// const searchFor1 = "Jo"
-// const searchBy1 = "firstName"
+const searchFor1 = "Jo"
+const searchBy1 = "firstName"
 // const expected1 = [
 //   {
 //     firstName: "John",
@@ -44,13 +52,13 @@
 //   },
 // ]
 
-// const searchFor2 = "ohn"
-// const searchBy2 = "firstName"
+const searchFor2 = "Ohn"
+const searchBy2 = "firstName"
 // const expected2 = []
 // // Explanation: "John" contains "ohn", it does not start with "ohn"
 
-// const searchFor3 = "Do"
-// const searchBy3 = "lastName"
+const searchFor3 = "dO"
+const searchBy3 = "lastName"
 // const expected3 = [
 //   {
 //     firstName: "John",
@@ -82,6 +90,16 @@
 // ]
 
 function filterByKey(items, searchFor, searchBy) {
-    // YOUR CODE HERE
+    return items.filter(item => 
+        item[searchBy].toLowerCase().startsWith(searchFor.toLowerCase())
+    );
 }
 
+
+
+
+console.log(filterByKey(people, searchFor1, searchBy1));
+console.log("****************************************");
+console.log(filterByKey(people, searchFor2, searchBy2));
+console.log("****************************************");
+console.log(filterByKey(people, searchFor3, searchBy3));
