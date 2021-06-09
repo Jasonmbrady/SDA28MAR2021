@@ -45,9 +45,9 @@ const recipe1 = {
   
   const available3 = { ...available1, ["live squid"]: 0 };
   const expected3 = 0;
-  
+  // Returns an int which is the number of servings that can be made.
   function getMaxServings(recipe, available) {
     // YOUR CODE HERE
   }
   
-  getMaxServings(recipe1, available1)
+  console.log(getMaxServings(recipe1, available1));
