@@ -48,6 +48,23 @@ const recipe1 = {
   // Returns an int which is the number of servings that can be made.
   function getMaxServings(recipe, available) {
     // YOUR CODE HERE
+    let servings = Infinity;
+
+    for (const ingredient in recipe){
+      const availAmount = available[ingredient];
+      const needAmount = recipe[ingredient];
+
+      if (available.hasOwnProperty(ingredient) === false || availAmount < needAmount){
+        return 0;
+      }
+      const numServings = Math.floor(availAmount/needAmount);
+
+      if (numServings < servings){
+        servings = numServings;
+      }
+    }
+    return servings;
+
   }
   
-  console.log(getMaxServings(recipe1, available1));
+  console.log(getMaxServings(recipe1, available2));
