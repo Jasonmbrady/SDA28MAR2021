@@ -5,32 +5,32 @@
   Bonus: allow the key that is grouped by to be provided.
 */
 
-// const objects = [
-//   {
-//     name: "Baby Yoda",
-//     category: "cute",
-//   },
-//   {
-//     name: "Cricket Protein",
-//     category: "food",
-//   },
-//   {
-//     name: "Shibe",
-//     category: "Cute",
-//   },
-//   {
-//     name: "Ancient India",
-//     category: "Cradle of Civilization",
-//   },
-//   {
-//     name: "Wasp Crackers",
-//     category: "Food",
-//   },
-//   {
-//     name: "The Fertile Crescent",
-//     category: "Cradle of Civilization",
-//   },
-// ]
+const objects = [
+  {
+    name: "Baby Yoda",
+    category: "cute",
+  },
+  {
+    name: "Cricket Protein",
+    category: "food",
+  },
+  {
+    name: "Shibe",
+    category: "Cute",
+  },
+  {
+    name: "Ancient India",
+    category: "Cradle of Civilization",
+  },
+  {
+    name: "Wasp Crackers",
+    category: "Food",
+  },
+  {
+    name: "The Fertile Crescent",
+    category: "Cradle of Civilization",
+  },
+]
 
 // const expected = {
 //   cute: [
@@ -65,7 +65,22 @@
 //   ],
 // }
 
-function categoryTableBuilder(items) {}
+function categoryTableBuilder(items, category="") {
+    solution = {};
+    for (const obj of items){
+        const cat = obj.category.toLowerCase();
+        if (category.length === 0 || category.toLowerCase() === cat){
+            if (solution.hasOwnProperty(cat)){
+                solution[cat].push(obj);
+            } else {
+                solution[cat] = [obj];
+        }
+        }
+    }
+    return solution;
+}
+// console.log(categoryTableBuilder(objects));
+// console.log(categoryTableBuilder(objects, "CUTE"));
 
 /*****************************************************************************/
 
@@ -77,24 +92,59 @@ function categoryTableBuilder(items) {}
   Bonus: solve in O(n) time
 */
 
-// const S1 = "ab#c";
-// const T1 = "ad#c";
+const S1 = "ab#c";
+const T1 = "ad#c";
 // const expected1 = true;
 // // Explanation: Both S and T become "ac"
 
-// const S2 = "ab##";
-// const T2 = "c#d#";
+const S2 = "ab##";
+const T2 = "c#d#";
 // const expected2 = true;
 // // Explanation: Both S and T become ""
 
-// const S3 = "a##c";
-// const T3 = "#a#c";
+const S3 = "a##c";
+const T3 = "#a#c";
 // const expected3 = true;
 // // Explanation: Both S and T become "c"
 
-// const S4 = "a#c";
-// const T4 = "b";
+const S4 = "a#c";
+const T4 = "b";
 // const expected4 = false;
 // // Explanation: S becomes "c" while T becomes "b".
 
-function backspaceStringCompare(S, T) {}
+function backspaceStringCompare(S, T) {
+    let reader = 0;
+    let newS = "";
+    let newT = "";
+    while( reader < S.length && reader < T.length){
+        if(S[reader] === "#" && newS.length > 0){
+            newS = newS.substring(0, newS.length - 1);
+        } else if (S[reader] !== "#"){newS += S[reader]}
+
+        if(T[reader] === "#" && newT.length > 0){
+            newT = newT.substring(0, newT.length - 1);
+        } else if (S[reader] !== "#"){newT += T[reader]}
+        reader++;
+    }
+
+    if (S.length > T.length){
+        while(reader < S.length){
+            if(S[reader] === "#" && newS.length > 0){
+                newS = newS.substring(0, newS.length - 1);
+            } else if (S[reader] !== "#"){newS += S[reader]}
+            reader++;
+        }
+    } else if (S.length < T.length){
+        if(T[reader] === "#" && newT.length > 0){
+            newT = newT.substring(0, newT.length - 1);
+        } else if (S[reader] !== "#"){newT += T[reader]}
+        reader++;
+    }
+    console.log(newS);
+    console.log(newT);
+    return newS === newT;
+}
+console.log(backspaceStringCompare(S1, T1));
+console.log(backspaceStringCompare(S2, T2));
+console.log(backspaceStringCompare(S3, T3));
+console.log(backspaceStringCompare(S4, T4));
