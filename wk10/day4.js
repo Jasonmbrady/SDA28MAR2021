@@ -7,28 +7,56 @@
 
 const strA1 = "Hello World"
 const strB1 = "lloeh wordl"
-const expected1 = true
+// const expected1 = true
 
 const strA2 = "Hey"
 const strB2 = "hello"
-const expected2 = false
+// const expected2 = false
 // Explanation: second string is missing a "y"
 
 const strA3 = "hello"
 const strB3 = "helo"
-const expected3 = false
+// const expected3 = false
 // Explanation: second string doesn't have enough "l" letters
 
 const strA4 = "hello"
 const strB4 = "lllheo"
-const expected4 = true
+// const expected4 = true
 
 const strA5 = "hello"
 const strB5 = "heloxyz"
-const expected5 = false
+// const expected5 = false
 // Explanation: not strB5 does not have enough "l" chars.
 
-function canBuild(s1, s2) {}
+function canBuild(s1, s2) {
+    const freq1 = {};
+    const freq2 = {};
+    for (let i = 0; i < s1.length; i++){
+        if (freq1.hasOwnProperty(s1[i].toLowerCase())){
+            freq1[s1[i]]++;
+        } else {
+            freq1[s1[i].toLowerCase()] = 1;
+        }
+    }
+    for (let i = 0; i < s2.length; i++){
+        if (freq2.hasOwnProperty(s2[i].toLowerCase())){
+            freq2[s2[i]]++;
+        } else {
+            freq2[s2[i].toLowerCase()] = 1;
+        }
+    }
+    for (const key in freq1){
+        if(freq2.hasOwnProperty(key) === false || freq2[key] < freq1[key]){
+            return false;
+        }
+    }
+    return true;
+}
+console.log(canBuild(strA1, strB1));
+console.log(canBuild(strA2, strB2));
+console.log(canBuild(strA3, strB3));
+console.log(canBuild(strA4, strB4));
+console.log(canBuild(strA5, strB5));
 
 /*****************************************************************************/
 
@@ -54,4 +82,27 @@ const str4 = "dvadf";
 const expected4 = 4;
 // Explanation: "vadf"
 
-function lengthOfLongestSubString(str) {}
+function lengthOfLongestSubString(str) {
+    let longest = 0;
+    for (let i=0; i<str.length; i++){
+        const seen = {};
+        let partial = "";
+        let j=i;
+        while( j < str.length && seen.hasOwnProperty(str[j]) === false){
+            seen[str[j]] = true;
+            partial += str[j];
+            j++;
+        }
+        // if (partial.length === str.length - i){
+        //     return partial.length;
+        // }
+        if (partial.length > longest){
+            longest = partial.length;
+        }
+    }
+    return longest;
+}
+// console.log(lengthOfLongestSubString(str1));
+// console.log(lengthOfLongestSubString(str2));
+// console.log(lengthOfLongestSubString(str3));
+// console.log(lengthOfLongestSubString(str4));
