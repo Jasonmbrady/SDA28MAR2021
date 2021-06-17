@@ -62,7 +62,7 @@ const medications = [
   Input: ailments2, medications
   Output: ["Longvida Curcumin"]
   */
-  const ailments2 = ["pain", "inflammation", "depression"];
+  const ailments2 = [ "depression", "cancer", "ageing", "cramps", "diabetes"];
   
   /*
   Input: ailments3, medications
@@ -71,5 +71,32 @@ const medications = [
   const ailments3 = ["existential dread"];
   
   function getMeMyMeds(ailments, meds) {
-    // YOUR CODE HERE
-  }
+   // YOUR CODE HERE
+   let maxMatchCount = 0;
+   const ailmentSeen = {};
+   let matchMeds = [];
+
+   for(const ailment of ailments){
+    ailmentSeen[ailment] = true;
+   }
+   for (const med of meds){
+    let matchCount = 0;
+    for (const symptom of med.treatableSymptoms){
+        if (ailmentSeen.hasOwnProperty(symptom)){
+            matchCount++;
+        }
+    }
+    if (matchCount > 0){
+        if (matchCount > maxMatchCount){
+            maxMatchCount = matchCount;
+            matchMeds = [med.name];
+        } else if (matchCount === maxMatchCount){
+            matchMeds.push(med.name)
+        }
+    }
+   }
+   return matchMeds;
+}
+console.log(getMeMyMeds(ailments1, medications));
+console.log(getMeMyMeds(ailments2, medications));
+console.log(getMeMyMeds(ailments3, medications));
