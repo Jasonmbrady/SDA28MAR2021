@@ -25,12 +25,9 @@ class Node {
     }
   
     insertAtBack(data) {
-        // if this.isEmpty
-        // add to head
         if (this.isEmpty()){
             this.head = new Node(data);
         } else {
-        // go to the end of the list (tail)
             let runner = this.head;
             while(runner.next !== null){
                 runner = runner.next;
@@ -40,22 +37,55 @@ class Node {
     }
   
     seedFromArr(arr) {
-        // for loop
         for (let i = 0; i < arr.length; i++){
             this.insertAtBack(arr[i])
         }
     }
 
     insertAtFront(data) {
-        // YOUR CODE HERE
+        // if this.isEmpty, set new node to head
+        if (this.isEmpty()){
+            this.head = new Node(data);
+        // if this is not empty, set runner to head
+        } else {
+            let runner = this.head;
+            // now set head to a new node.
+            // note that this DOES NOT change the node runner is referencing
+            this.head = new Node(data);
+            // set runner to this.head.next
+            this.head.next = runner;
+        }
+
     }
 
     removeHead() {
-        // YOUR CODE HERE
+        // if this.isEmpty, return null and do nothing
+        if (this.isEmpty()){
+            return null;
+        } else {
+            this.head = this.head.next;
+        }
     }
     
     average() {
-        // YOUR CODE HERE
+        // if this.isEmpty, return null and do nothing
+        if (this.isEmpty()){
+            return null
+        // if this is not empty, create sum and counter variable
+        // set runner to head. As long as runner is pointing at a node
+        // (runner !== null) increment sum by val and counter by one, then move 
+        // runner to runner.next. Once runner is null, return sum/cnt.
+        } else {
+            let runner = this.head;
+            let sum = 0;
+            let cnt = 0;
+            while (runner !== null){
+                sum += runner.data;
+                cnt++;
+                runner = runner.next;
+            }
+            return sum / cnt;
+        }
     }
 
 }
