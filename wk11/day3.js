@@ -79,14 +79,49 @@ class Node {
     // return true if a node in the list contains val
     // otherwise return false
     contains(val){
-        // YOUR CODE HERE
+        if(this.isEmpty()){
+            return false;
+        }
+        else {
+            let runner = this.head;
+            while (runner !== null){
+                if (runner.data === val){
+                    return true;
+                }
+                runner = runner.next;
+            }
+            return false;
+        }
     }
     // Optional bonus challenge, implement contains recursively
     containsRecursive(val, runner=this.head){
         // YOUR CODE HERE
+        // BASE CASE(S)
+        if (runner === null) {
+            return false;
+        }
+        if (runner.data === val) {
+            return true;
+        }
+        return this.containsRecursive(val, runner.next)
     }
     // removes the last node of the list
     removeTail(){
+        if (this.isEmpty()){
+            return null;
+        } else if (this.head.next === null){
+            let data = this.head.data
+            this.head = null;
+            return data;
+        } else {
+            let runner = this.head;
+            while (runner.next.next !== null){
+                runner = runner.next;
+            }
+            let data = runner.next.data
+            runner.next = null;
+            return data;
+        }
         // YOUR CODE HERE
     }
 }
