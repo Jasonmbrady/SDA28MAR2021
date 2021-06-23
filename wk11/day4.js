@@ -131,6 +131,11 @@ secondToLast() {
     if (this.isEmpty() || this.head.next === null) {
         return null;
     }
+    let runner = this.head;
+    while (runner.next.next !== null){
+        runner = runner.next;
+    }
+    return runner.data;
  }
  /**
   * Removes the node that has the matching given val as it's data.
@@ -140,7 +145,24 @@ secondToLast() {
   * BONUS: Remove ALL nodes with matching data, returns true if at least 1 
   * node was removed.
   */
- removeVal(val) {}
+ removeVal(val) {
+     if (this.isEmpty()){
+         return false;
+     }
+     let runner = this.head;
+     let removed = false;
+     // iterate through list, looking at runner.next.data to see if it matches val. if it does, cut it out of the list.
+     while (runner.next !== null){
+         while(runner.next.data === val){
+             // This while loop allows me to remove multiple nodes in a row
+             // that all have data that matches val before moving runner.
+             runner.next = runner.next.next;
+             removed = true;
+         }
+         runner = runner.next;
+     }
+     return removed;
+ }
  
  // EXTRA
  /**
@@ -149,7 +171,22 @@ secondToLast() {
   * @param {any} targetVal The value to use to find the node that the newVal
   *    should be inserted in front of.
   */
- prepend(newVal, targetVal) {}
+ prepend(newVal, targetVal) {
+     if (this.isEmpty()){
+         return null;
+     }
+     let runner = this.head;
+     while (runner.next !== null){
+         if(runner.next.data === targetVal){
+            const newNode = new Node(newVal);
+            newNode.next = runner.next;
+            runner.next = newNode;
+            runner = runner.next.next;
+         } else {
+             runner = runner.next;
+         }
+     }
+ }
  
 }
   
