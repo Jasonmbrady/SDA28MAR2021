@@ -149,6 +149,10 @@ secondToLast() {
      if (this.isEmpty()){
          return false;
      }
+     while (this.head !== null && this.head.data === val){
+         this.head = this.head.next;
+     }
+     if (this.head !== null){
      let runner = this.head;
      let removed = false;
      // iterate through list, looking at runner.next.data to see if it matches val. if it does, cut it out of the list.
@@ -162,6 +166,7 @@ secondToLast() {
          runner = runner.next;
      }
      return removed;
+    }
  }
  
  // EXTRA
