@@ -177,14 +177,59 @@ class Node {
  *    whose nodes will be added to the back of this list.
  * @return {SinglyLinkedList} This list with the added nodes.
  */
-concat(addList) {}
+concat(addList) {
+    if (this.isEmpty()){
+        // if empty, assign this to addList and return;
+        this.head = addList.head;
+        return this;
+    } else {
+        // find last node
+        runner = this.head;
+        while (runner.next !== null){
+            runner = runner.next;
+        }
+        // set last node.next to addList.head, creating a chain
+        runner.next = addList.head;
+        return this;
+    }
+}
 
 /**
  * Finds the node with the smallest number as data and moves it to the front
  * of this list.
  * @return {SinglyLinkedList} This list.
  */
-moveMinToFront() {}
+moveMinToFront() {
+    if (this.isEmpty()){
+        return this;
+    }
+    // track smallest value
+    let minVal = this.head.data;
+    // refer to the current node with smallest value
+    let minNode = this.head;
+    // used to track node to cut from
+    let prevNode;
+    let runner = this.head;
+    // This will not run at all if this.head is the only node
+    while (runner.next !== null){
+        // compare data to minVal, if smaller, replace data and minNode reference
+        if (runner.next.data < minVal){
+            minVal = runner.next.data;
+            minNode = runner.next;
+            // Assign/reassign prevNode for cutting out minNode
+            prevNode = runner;
+        }
+        runner = runner.next;
+    }
+    if (minNode !== this.head){
+        // cut minNode out
+        prevNode.next = prevNode.next.next;
+        // place it at the front
+        minNode.next = this.head;
+        this.head = minNode;
+    }
+    return this;
+}
 
 /**
  * Splits this list into two lists where the 2nd list starts with the node
@@ -195,7 +240,36 @@ moveMinToFront() {}
  * @return {SinglyLinkedList} The split list containing the nodes that are
  *    no longer in this list.
  */
-splitOnVal(val) {}
+splitOnVal(val) {
+    // Create a new list to populate with nodes
+    const newList = new SinglyLinkedList;
+    if (this.isEmpty){
+        // return an empty list
+        return newList;
+    } else if (this.head.data === val){
+        // edge case for if this.head.data === val
+        newList.head = this.head;
+        // sets this to an empty list and returns full list as new list
+        this.head = null;
+        return newList;
+    } else {
+        runner = this.head;
+        while (runner.next !== null){
+            // iterate through list checking node data for val
+            if (runner.next.data === val){
+                // Set head of newList to the node with val for data
+                newList.head = runner.next;
+                // setting runner.next to null both cuts the list and stops 
+                // the while loop.
+                runner.next = null;
+            } else {
+                runner = runner.next;
+            }
+        }
+        // returns sublist if val was found, or empty list if it wasn't
+        return newList;
+    }
+}
 
  
 }
