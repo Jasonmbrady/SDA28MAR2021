@@ -13,20 +13,30 @@ class Stack {
   
     // methods go here
 
-    push(x) {
-      // Your Code Here
+    push(data) {
+        // Add new item to top of stack
+      this.items[this.size()] = data;
+      return this.size();
     }
     pop() {
-      // Your Code Here
+        // Remove item from top of stack and return
+      if (this.isEmpty() === false){
+        const popped = this.items[this.size() - 1];
+        this.items.length--;
+        return popped;
+      }
     }
     isEmpty() {
-        // Your Code Here
+        // return T if stack is empty or F if not
+        return this.size() === 0;
     }
     size() {
-        // Your Code Here
+        //return number of items in stack
+        return this.items.length;
     }
     peek() {
-        // Your Code Here
+        // look at top item without removing
+        return this.items[this.size() - 1]
     }
   }
   
