@@ -27,20 +27,36 @@ class Node {
      */
     enqueue(element, priority) {
         // YOUR CODE HERE
+        if (this.items.length === 0){
+            this.items.push(new Node(element, priority));
+        } else {
+            let queued = false;
+            for(let i=this.items.length -1; i >= 0; i--){
+                if(this.items[i].priority > priority){
+                    this.items.splice (i, 0, new Node(element, priority));
+                    queued = true;
+                    break;
+                }
+            }
+            if (!queued) {
+                this.items.splice(0, 0, new Node(element, priority))
+            }
+        }
+        return this.items.length;
     }
   
     /**
      * Removes and returns the most prioritized item.
      */
     dequeue() {
-    // YOUR CODE HERE
+        return this.items.pop().data;
     }
   }
   // ******************************************************** //
 
   class PriQNode {
     constructor(val, pri) {
-      this.val = val
+      this.data = val
       this.next = null
       this.pri = pri
     }
@@ -49,14 +65,34 @@ class Node {
   class LinkedListPriorityQueue {
     constructor() {
       this.head = null
-      this.tail = null
     }
-  
-    enqueue() {
-      // [ ] code here
+
+    enqueue(val, pri) {
+        let newNode = PriQNode(val,pri);
+        if (this.head === null){
+            this.head = newNode;
+        } else {
+            let runner = this.head;
+            if (newNode.pri < this.head.pri){
+                newNode.next = this.head;
+                this.head = newNode;
+            } else {
+                while (runner.next !== null && newNode.pri >= runner.next.pri){
+                    runner = runner.next;
+                }
+                newNode.next = runner.next;
+                runner.next = newNode;
+            }
+        }
     }
   
     dequeue() {
-      // [ ] code here
+        if(this.head === null){
+            return null;
+        } else {
+            let value = this.head.data;
+            this.head = this.head.next;
+            return value;
+        }
     }
   }
