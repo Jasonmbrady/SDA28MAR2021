@@ -36,3 +36,27 @@ class QElement {
     // YOUR CODE HERE
     }
   }
+  // ******************************************************** //
+
+  class PriQNode {
+    constructor(val, pri) {
+      this.val = val
+      this.next = null
+      this.pri = pri
+    }
+  }
+  
+  class LinkedListPriorityQueue {
+    constructor() {
+      this.head = null
+      this.tail = null
+    }
+  
+    enqueue() {
+      // [ ] code here
+    }
+  
+    dequeue() {
+      // [ ] code here
+    }
+  }
