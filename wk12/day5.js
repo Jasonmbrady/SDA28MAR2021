@@ -1,10 +1,10 @@
 // - PriorityQueue (create enqueue and dequeue methods)
 //   - Design a new PriorityQueue class where the queue maintains an ascending order when items are added based on a queue item's provided priority integer value. A priority value of 1 is most important which means it should be at the front of the queue, the first to be dequeued.
 
-class QElement {
-    constructor(element, priority) {
-      // element is the given item to be added to the queue.
-      this.element = element
+class Node {
+    constructor(data, priority) {
+      // data is the given item to be added to the queue.
+      this.data = data
       this.priority = priority
     }
   }
