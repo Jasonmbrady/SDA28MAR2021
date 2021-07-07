@@ -72,4 +72,14 @@ class Node {
         return this;
       }
     }
+
+    min() {
+      // YOU CODE HERE
+    }
+  
+    max() {
+      // YOUR CODE HERE
+    }
+  
   }
+  
