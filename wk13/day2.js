@@ -75,10 +75,34 @@ class Node {
 
     min() {
       // YOU CODE HERE
+      if (this.isEmpty()){
+        return null;
+      } else {
+        let runner = this.root;
+        while (runner !== null){
+          if (runner.left === null){
+            return runner.data;
+          } else {
+            runner = runner.left;
+          }
+        }
+      }
     }
   
     max() {
       // YOUR CODE HERE
+      if (this.isEmpty()){
+        return null;
+      } else {
+        let runner = this.root;
+        while (runner !== null) {
+          if (runner.right === null){
+            return runner.data;
+          } else {
+            runner = runner.right;
+          }
+        }
+      }
     }
   
   }
