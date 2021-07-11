@@ -107,6 +107,20 @@
      */
     reverse() {
         // YOUR CODE HERE
+        if (this.head === null || this.head.next === null){
+            return this;
+        }
+        else {
+            let runner = this.head;
+            let temp = null;
+            while (runner.next !== null){
+                temp = runner.next;
+                runner.next = runner.next.next;
+                temp.next = this.head;
+                this.head = temp;
+            }
+        }
+        return this;
     }
   
     /**
@@ -115,6 +129,16 @@
      */
     removeNegatives() {
         // YOUR CODE HERE
+        let runner = this.head;
+        while (runner !== null){
+            if (isNaN(runner.data) === false){
+                if (runner.data < 0){
+                    this.removeVal(runner.data);
+                }
+            }
+            runner = runner.next;
+        }
+        return this;
     }
   
     /**
@@ -125,6 +149,17 @@
      */
     hasLoop() {
         // YOUR CODE HERE
+        let runner = this.head;
+        let fastRunner = this.head;
+
+        while (fastRunner !== null && fastRunner.next !== null){
+            runner = runner.next;
+            fastRunner = fastRunner.next.next;
+            if (runner === fastRunner){
+                return true;
+            }
+        }
+        return false;
     }
   }
   
